@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  api:
+    image: 'macwdo/simpleapp.api:latest'
+    volumes:
+      - './SimpleApp.Api:/app'
+    ports:
+      - '5000:5000'
+    environment:
+      - ASPNETCORE_HTTP_PORT=https://+:5000
+      - ASPNETCORE_URLS=http://+:5000
+
+
+  workers:
+    image: 'macwdo/simpleapp.workers:latest'
+    volumes:
+      - './SimpleApp.Workers:/app'
+    ports:
+      - '5001:5000'
+    environment:
+      - ASPNETCORE_HTTP_PORT=https://+:5000
+      - ASPNETCORE_URLS=http://+:5000
